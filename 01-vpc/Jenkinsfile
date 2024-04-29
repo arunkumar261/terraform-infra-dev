@@ -5,6 +5,10 @@ pipeline{
         }
     }
 
+    parameters{
+        choice(name:'action', choices:['apply', 'destroy'], description: "Choose wisely depends on requirement" )
+    }
+
     options{
         timeout(time:1, unit:'HOURS')
         disableConcurrentBuilds()
@@ -15,7 +19,7 @@ pipeline{
             steps{
                 sh """
                 cd 01-vpc
-                terraform init -reconfigure
+                terraform ini-reconfigure
                 """
             }
         }
@@ -28,6 +32,15 @@ pipeline{
             }
         }
         stage('apply'){
+            when{
+                expression{
+                    params.action == 'apply'
+                }
+            }
+            input{
+                message 'Should we continue..?'
+                ok 'yes..U can Continue...'
+            }
             steps{
                 sh """
                 cd 01-vpc
@@ -36,6 +49,15 @@ pipeline{
             }
         }
         stage('destroy'){
+            when{
+                expression{
+                    params.action == 'destroy'
+                }
+            }
+            input{
+                message 'Should we continue..?'
+                ok 'yes..U can Continue...'
+            }
             steps{
                 sh """
                 cd 01-vpc
