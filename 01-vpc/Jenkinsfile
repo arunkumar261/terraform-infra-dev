@@ -1,66 +1,85 @@
-pipeline{
-    agent{
-        node{
-         label 'AGENT-1'
-        }
+pipeline {
+    //agent any                     // -------------> default agent
+//agent which is created by us here we r declaring
+    agent {
+      node{
+        label 'AGENT-1'
+      }
     }
-
-    options{
-        timeout(time:'1', unit:'Hours')
-        disableConcurrentBuilds()
+  
+   options{
+        // timeout(time:1, unit:'HOURS')
+        // disableConcurrentBuilds()
+        ansiColor('xterm')
     }
-
-    stages{
-        stage('Init'){
-            steps{
+     parameters {
+        choice(name: 'action', choices: ['apply', 'destroy'], description: 'Pick something')
+    }
+    stages {
+        stage('Init') {
+            steps {
                 sh """
-                cd 01-vpc
-                terraform init -reconfigure
+                    cd 01-vpc
+                    terraform init -reconfigure
                 """
             }
         }
-        stage('Plan'){
-            steps{
-                sh """
-                cd 01-vpc
-                terraform plan
+        
+         stage('Plan') {
+            steps {
+               sh """
+                    cd 01-vpc
+                    terraform plan 
                 """
             }
         }
-        stage('Apply'){
+         stage('Apply') {
+            when{
+                expression {
+                    params.action== 'apply'
+                }
+            }
             input{
-                message "should we continue..?"
-                ok "U can continue..."
+                message "should we continue?"
+                ok "yes, U can.."
             }
-            steps{
+            steps {
                 sh """
-                cd 01-vpc
-                terraform apply -auto-approve
+                    cd 01-vpc
+                    terraform apply -auto-approve
                 """
             }
         }
-        stage('Destroy'){
-            input{
-                message "should we continue..?"
-                ok "U can continue..."
+        stage('Destroy') {
+            when{
+                expression {
+                    params.action== 'destroy'
+                }
             }
-            steps{
+            input{
+                message "should we continue?"
+                ok "yes, U can.."
+            }
+            steps {
                 sh """
-                cd 01-vpc
-                terraform destroy -auto-approve
+                    cd 01-vpc
+                    terraform destroy -auto-approve
                 """
             }
         }
     }
-    post{
-        always{
-            echo 'I will always say Hello Again'
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
         }
-        failure{
-            echo 'I will say Hello only if pipeline is Failed'
+        failure { 
+            echo 'this runs when pipeline is failed, used generally to send some alerts'
         }
         success{
-            echo 'I will say Hello only if pipeline is Successfull'
+            echo 'I will say Hello when pipeline is success'
         }
     }
+
+
+
 }
