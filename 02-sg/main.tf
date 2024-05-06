@@ -1,5 +1,6 @@
 module "vpn" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  # source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
+  source = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for VPN"
@@ -9,7 +10,7 @@ module "vpn" {
 }
 
 module "mongodb" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for MongoDB"
@@ -19,7 +20,7 @@ module "mongodb" {
 }
 
 module "redis" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for redis"
@@ -29,7 +30,7 @@ module "redis" {
 }
 
 module "mysql" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for mysql"
@@ -39,7 +40,7 @@ module "mysql" {
 }
 
 module "rabbitmq" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for rabbitmq"
@@ -49,7 +50,7 @@ module "rabbitmq" {
 }
 
 module "catalogue" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for catalogue"
@@ -59,7 +60,7 @@ module "catalogue" {
 }
 
 module "user" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for user"
@@ -69,7 +70,7 @@ module "user" {
 }
 
 module "cart" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for cart"
@@ -79,7 +80,7 @@ module "cart" {
 }
 
 module "shipping" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for shipping"
@@ -89,7 +90,7 @@ module "shipping" {
 }
 
 module "payment" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for payment"
@@ -99,7 +100,7 @@ module "payment" {
 }
 
 module "web" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for web"
@@ -109,7 +110,7 @@ module "web" {
 }
 
 module "app_alb" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for APP ALB"
@@ -121,7 +122,7 @@ module "app_alb" {
 
 
 module "web_alb" {
-  source         = "C:/DevOpswithAWS/repos/terraform-aws-security-group"
+  source         = "git::https://github.com/arunkumar261/terraform-aws-security-group.git?ref=main"
   project_name   = var.project_name
   environment    = var.environment
   sg_description = "SG for WEB ALB"
